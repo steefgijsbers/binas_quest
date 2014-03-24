@@ -2,46 +2,29 @@ require 'spec_helper'
 
 describe "StaticPages" do
 
+  subject {page} 
+  
   describe "Home page" do
+      before { visit root_path }
       
-      it "should have content 'Welkom'" do
-        visit '/static_pages/home'
-        expect(page).to have_content('Welkom')
-      end    
-      it "should have the base title 'Binas Quest'" do
-        visit '/static_pages/home'
-        expect(page).to have_title('Binas Quest')
-      end
-      it "should not have a custom page title'" do
-        visit '/static_pages/home'
-        expect(page).not_to have_title('| Home')
-      end
+      it { should have_content('Welkom') }   
+      it { should have_title(full_title('')) }
+      it { should_not have_title('| Home') }
   end
   
-  
   describe "Help page" do
+    before { visit help_path }
     
-    it "should have content 'Uitleg'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Uitleg')
-    end
-    it "should have title 'Uitleg'" do
-      visit '/static_pages/help'
-      expect(page).to have_title('Binas Quest | Uitleg')
-    end
+    it { should have_content('Uitleg') }
+    it { should have_title(full_title('Uitleg')) }
   end
   
   
   describe "Contact page" do
+    before { visit contact_path }
     
-    it "should have content 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact')     
-    end
-    it "should have title 'Binas Quest | Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_title('Binas Quest | Contact')
-    end
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
   end
 
 
