@@ -10,4 +10,12 @@ describe "User pages" do
     it { should have_content('Registreer') }
     it { should have_title(full_title('Registreer')) }
   end
+  
+  describe "Profiel pagina" do
+    let(:user) { FactoryGirl.create(:user) }
+    before {  visit user_path(user) }
+    
+    it { should have_content(user.naam) }
+    it { should have_title(user.naam) }
+  end
 end
