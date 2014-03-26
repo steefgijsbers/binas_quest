@@ -1,3 +1,27 @@
 <% provide :title, 'Registreer' %>
 <h1>Registreer</h1>
-<p>... Hier moet een registratie form komen</p>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@user) do |f| %>
+			<%= render '/shared/error_messages' %>
+			
+			<%= f.label :naam %>
+			<%= f.text_field :naam %>
+			
+			<%= f.label :klas %>
+			<%= f.text_field :klas %>
+			
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			
+			<%= f.label :password, "Wachtwoord" %>
+			<%= f.password_field :password %>
+			
+			<%= f.label :password_confirmation, "Bevestig wachtwoord "%>
+			<%= f.password_field :password_confirmation %>
+			
+			<%= f.submit "Registreer", class: "btn btn-large btn-primary"%>		
+		<% end %>
+	</div>
+</div>
+
