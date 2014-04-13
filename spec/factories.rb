@@ -7,4 +7,10 @@ FactoryGirl.define do
     password  "foobar"
     password_confirmation "foobar"
   end
+  
+  factory :level do
+    name      "examplelevel"
+    img_src   "examplelevel.jpg"
+    solution  "he"
+  end
 end

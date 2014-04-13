@@ -1,0 +1,17 @@
+<% provide :title, @level.name %>
+
+<div class="row">
+	<aside class="span4">
+		<section>
+			<ul>
+				<li><%= @level.name %></li>
+				<li><%= @level.img_src %></li>
+				<li><%= @level.solution %></li>
+			</ul>
+		</section>
+	</aside>
+</div>
+
+<div class="level_img">
+	<%= image_tag(@level.img_src, alt: @level.name) %>
+</div>

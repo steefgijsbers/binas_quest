@@ -1,5 +1,5 @@
 BinasQuest::Application.routes.draw do
-  get "levels/new"
+  resources :levels
   resources :users
   
   root  'static_pages#home'

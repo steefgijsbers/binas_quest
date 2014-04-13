@@ -3,7 +3,7 @@ class Level < ActiveRecord::Base
   
   validates :name,      presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   
-  VALID_IMGSRC_REGEX = /\A\/assets\/images\/[a-zA-Z\d\-\_]+\.(jpg|jpeg|bmp|png|gif)\Z/
+  VALID_IMGSRC_REGEX = /\A[a-zA-Z\d\-\_]+\.(jpg|jpeg|bmp|png|gif)\Z/
   validates :img_src,   presence: true, format: { with: VALID_IMGSRC_REGEX }
   
   VALID_SOLUTION_REGEX = /\A(h|he|

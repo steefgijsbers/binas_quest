@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Level do
   
-  before { @level = Level.new(name: 'test_level', img_src: '/assets/images/test_level.jpg', solution: 'he') }
+  before { @level = Level.new(name: 'test_level', img_src: 'test_level.jpg', solution: 'he') }
   
   subject { @level }
   
@@ -34,7 +34,7 @@ describe Level do
   
   describe "when img_src format is invalid" do
     it "should be invalid" do
-      invalid_sources = %w[testimg.g .jpg /assets/images/d.g /assets/ima/g.bmp /images/f.jpg]
+      invalid_sources = %w[testimg.g .jpg /assets/images/d.g /assets/ima/g.bmp /images/f.jpg /assets/images/f.gif]
       invalid_sources.each do |src|
         @level.img_src = src
         expect(@level).not_to be_valid
@@ -44,8 +44,7 @@ describe Level do
   
   describe "when img_src format is valid" do
     it "should be valid" do
-      valid_sources = %w[/assets/images/level_1.jpg /assets/images/d.bmp /assets/images/1.gif
-                        /assets/images/DDD.jpg]
+      valid_sources = %w[level_1.jpg d.bmp 1.gif DDD.jpg]
       valid_sources.each do |src|
         @level.img_src = src
         expect(@level).to be_valid
