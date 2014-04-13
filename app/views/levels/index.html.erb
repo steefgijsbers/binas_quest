@@ -1,0 +1,13 @@
+<% provide :title, 'Level index' %>
+
+<h1>Level index</h1>
+
+<ul>
+	<% @levels.each do |lvl| %>
+		<li>
+			<%= link_to(lvl.name, level_path(lvl)) %> ,
+			<%= lvl.img_src %> ,
+			<%= lvl.solution %>
+		</li>
+	<% end %>
+</ul>

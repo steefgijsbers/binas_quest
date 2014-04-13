@@ -17,6 +17,10 @@ class LevelsController < ApplicationController
     end
   end
   
+  def index
+    @levels = Level.order(:name)
+  end
+  
   
   private
   

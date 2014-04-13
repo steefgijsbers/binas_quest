@@ -42,4 +42,11 @@ describe "Level Pages" do
     it { should have_content(level.name) }
     it { should have_title(level.name) }
   end
+  
+  describe "Index page" do
+    before { visit levels_path }
+    
+    it { should have_content('Level index') }
+    it { should have_title('Level index') }
+  end
 end
