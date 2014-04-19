@@ -5,14 +5,14 @@ describe "Level Pages" do
   subject { page }
   
   describe "Upload page" do
-    before { visit upload_path }
+    before { visit uploadlevels_path }
     
     it { should have_content('Upload Levels') }
     it { should have_title(full_title('Upload Levels')) } 
   end
   
   describe "Upload Level" do
-    before { visit upload_path }
+    before { visit uploadlevels_path }
     
     let(:submit) { "Upload level" }
     

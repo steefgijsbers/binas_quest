@@ -1,12 +1,17 @@
 FactoryGirl.define do
   factory :user do
-    naam      "Steef"
-    email     "steef@example.com"
-    klas      "5Hb"
-    progress  "start"
-    password  "foobar"
+    sequence(:naam)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}
+    klas "5Hb"
+    progress "start"
+    password "foobar"
     password_confirmation "foobar"
+         
+    factory :admin do
+      admin true
+    end
   end
+
   
   factory :level do
     name      "examplelevel"

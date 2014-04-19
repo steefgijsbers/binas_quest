@@ -11,6 +11,10 @@ module SessionsHelper
     !current_user.nil?
   end
   
+  def admin?
+    current_user.admin?
+  end
+  
   def sign_out
     current_user.update_attribute(:remember_token, User.hash(User.new_remember_token))
     cookies.delete(:remember_token)
@@ -24,5 +28,18 @@ module SessionsHelper
   def current_user
     remember_token = User.hash(cookies[:remember_token])
     @current_user ||= User.find_by(remember_token: remember_token)
+  end
+  
+  def current_user?(user)
+    user == current_user
+  end
+  
+  def store_location
+    session[:return_to] = request.url if request.get?
+  end
+  
+  def redirect_back_or(default)
+    redirect_to session[:return_to] || default
+    session.delete :return_to
   end
 end

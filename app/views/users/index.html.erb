@@ -1,0 +1,19 @@
+<% provide :title, 'All users' %>
+
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+	<% @users.each do |user| %>
+		<li>
+			<%= link_to user.naam, user %>
+			<% if current_user.admin? && !current_user?(user) %>
+				| <%= link_to 'delete', user, method: :delete, 
+											  data: { confirm: "Weet je zeker dat je deze gebruiker wilt verwijderen?" } %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
+
+<%= will_paginate %>

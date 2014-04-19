@@ -1,0 +1,27 @@
+<% provide :title, 'Wijzig profiel' %>
+
+<h1>Wijzig profiel</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@user) do |f| %>			
+			<%= render '/shared/user_error_messages'%>
+			
+			<%= f.label :naam, "Naam" %>
+			<%= f.text_field :naam %>
+			
+			<%= f.label :klas, "Klas" %>
+			<%= f.text_field :klas %>
+			
+			<%= f.label :email, "Email" %>
+			<%= f.text_field :email %>
+			
+			<%= f.label :password, "Wachtwoord" %>
+			<%= f.password_field :password %>
+			
+			<%= f.label :password_confirmation, "Bevestig wachtwoord" %>
+			<%= f.password_field :password_confirmation %>
+			
+			<%= f.submit "Sla op", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>
