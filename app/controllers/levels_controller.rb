@@ -1,4 +1,5 @@
 class LevelsController < ApplicationController
+  
   def new
     @level = Level.new
   end
@@ -26,6 +27,10 @@ class LevelsController < ApplicationController
   
   def level_params
     params.require(:level).permit(:name, :img_src, :solution)
+  end
+  
+  def admin_user
+    redirect_to root_url unless current_user.admin?
   end
  
 end
