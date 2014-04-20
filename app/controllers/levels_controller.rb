@@ -1,4 +1,5 @@
 class LevelsController < ApplicationController
+  before_action :signed_in_user
   before_action :admin_user
   
   def new
@@ -34,6 +35,13 @@ class LevelsController < ApplicationController
   
   def level_params
     params.require(:level).permit(:name, :img_src, :solution)
+  end
+  
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Voor deze actie moet je inloggen en administrator privileges hebben"
+    end
   end
   
   def admin_user
