@@ -1,9 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
+  
   task populate: :environment do
-    User.create!(naam: "Example User",
+    User.create!(naam: "Steef",
                  klas: "5Hb",
-                 email: "example@railstutorial.org",
+                 email: "steef_gijsbers@hotmail.com",
                  password: "foobar",
                  password_confirmation: "foobar",
                  admin: true)
@@ -17,6 +18,14 @@ namespace :db do
                    klas: klas,
                    password: password,
                    password_confirmation: password)
+    end
+    99.times do |n|
+      name  = "Level #{n+1}"
+      img_src = "#{n+1}.bmp"
+      solution = "he"      
+      Level.create!(name: name,
+                    img_src: img_src,
+                    solution: solution)
     end
   end
 end

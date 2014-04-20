@@ -2,12 +2,21 @@
 
 <h1>Level index</h1>
 
+<%= will_paginate %>
+
 <ul>
 	<% @levels.each do |lvl| %>
 		<li>
 			<%= link_to(lvl.name, level_path(lvl)) %> ,
 			<%= lvl.img_src %> ,
 			<%= lvl.solution %>
+			
+			<% if current_user.admin? %>
+				| <%= link_to 'delete', lvl, method: :delete,
+				 							   data: { confirm: "Are you sure you want to delete this level?" } %>							
+			<% end %>
 		</li>
 	<% end %>
 </ul>
+
+<%= will_paginate %>

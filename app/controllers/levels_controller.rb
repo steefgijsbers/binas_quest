@@ -1,4 +1,5 @@
 class LevelsController < ApplicationController
+  before_action :admin_user
   
   def new
     @level = Level.new
@@ -19,7 +20,13 @@ class LevelsController < ApplicationController
   end
   
   def index
-    @levels = Level.order(:name)
+    @levels = Level.paginate(page: params[:page])
+  end
+  
+  def destroy
+    Level.find(params[:id]).destroy
+    flash[:success] = "Level succesvol verwijderd"
+    redirect_to levels_url
   end
   
   
