@@ -1,0 +1,13 @@
+<% provide :title, 'Levelpack index' %>
+
+<h1>Levelpack index</h1>
+
+<% @levelpacks.each do |lvl_pck| %>
+	<li>
+		<%= link_to lvl_pck.name, levelpack_path(lvl_pck) %>				
+		| <%= link_to 'delete', lvl_pck, method: :delete, 
+										 data: "Are you sure you want to delete this levelpack?" %>
+	</li>
+<% end %>
+
+

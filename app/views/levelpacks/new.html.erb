@@ -1,3 +1,18 @@
 <% provide :title, 'Create levelpack' %>
 
 <h1>Create levelpack</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for @levelpack do |f| %>
+			<%= render '/shared/levelpack_error_messages' %>
+			
+			<%= f.label :name, "Name: (format = 'levelpack_00')" %>
+			<%= f.text_field :name %>
+			
+			<%= f.label :title, "Title: (max 50 char)" %>
+			<%= f.text_field :title %>
+			
+			<%= f.submit "Create levelpack", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>
