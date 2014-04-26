@@ -18,4 +18,10 @@ FactoryGirl.define do
     img_src   "examplelevel.jpg"
     solution  "he"
   end
+  
+  factory :levelpack do
+    name      "levelpack_00"
+    title     "example title"
+    solution  "hehehehehe"
+  end
 end

@@ -1,4 +1,5 @@
 BinasQuest::Application.routes.draw do
+  resources :levelpacks
   resources :levels
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

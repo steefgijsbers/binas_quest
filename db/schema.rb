@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426101743) do
+ActiveRecord::Schema.define(version: 20140426170904) do
+
+  create_table "levelpacks", force: true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "solution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "levelpacks", ["name"], name: "index_levelpacks_on_name", unique: true
 
   create_table "levels", force: true do |t|
     t.string   "name"
