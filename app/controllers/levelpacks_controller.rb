@@ -4,4 +4,7 @@ class LevelpacksController < ApplicationController
     
   end
   
+  def show
+    @levelpack = Levelpack.find_by(id: params[:id])
+  end
 end
