@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426084033) do
+ActiveRecord::Schema.define(version: 20140426101743) do
 
   create_table "levels", force: true do |t|
     t.string   "name"
