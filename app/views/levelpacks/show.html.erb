@@ -4,3 +4,9 @@
 <p>name: <%= @levelpack.name %></p>
 <p>title: <%= @levelpack.title %></p>
 <p>solution: <%= @levelpack.solution %></p>
+<p></p>
+<ul>
+	<% @levels.each do |lvl| %>
+		<li><%= link_to lvl.name, lvl %></li>
+	<% end %>
+</ul>

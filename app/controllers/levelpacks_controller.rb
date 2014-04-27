@@ -8,6 +8,7 @@ class LevelpacksController < ApplicationController
   
   def show
     @levelpack = Levelpack.find_by(id: params[:id])
+    @levels = @levelpack.corresponding_levels
   end
   
   def create
