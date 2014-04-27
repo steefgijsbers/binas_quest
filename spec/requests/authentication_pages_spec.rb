@@ -46,6 +46,31 @@ describe "AuthenticationPages" do
           specify { expect(response).to redirect_to signin_path }
         end
       end
+      
+      
+      describe "in the Levelpacks controller" do
+        let(:levelpack) { FactoryGirl.create(:levelpack) }
+        
+        describe "visiting the new page" do
+          before { visit new_levelpack_path }
+          it { should have_title 'Log in' }
+        end
+        
+        describe "visiting the show page" do          
+          before { visit levelpack_path(levelpack) }
+          it { should have_title 'Log in' }
+        end
+        
+        describe "visiting the index page" do
+          before { visit levelpacks_path }
+          it { should have_title 'Log in' }
+        end
+        
+        describe "submitting to the create page" do
+          before { post levelpacks_path }
+          specify { expect(response).to redirect_to signin_path }
+        end
+      end
     end
     
     describe "as wrong user" do
@@ -110,9 +135,11 @@ describe "AuthenticationPages" do
       it { should_not have_link('Log in',     href: signin_path) }
       
       describe "as non-admin user" do
-        it { should_not have_link('All users',  href: users_path) }
-        it { should_not have_link('Index',      href: levels_path) }
-        it { should_not have_link('Upload',     href: uploadlevels_path) }
+        it { should_not have_link('All users',        href: users_path) }
+        it { should_not have_link('Level index',      href: levels_path) }
+        it { should_not have_link('Level upload',     href: uploadlevels_path) }
+        it { should_not have_link('Levelpack index',  href: levelpacks_path) }
+        it { should_not have_link('Levelpack create', href: new_levelpack_path) }
       end
       
       describe "as admin user" do
@@ -120,9 +147,11 @@ describe "AuthenticationPages" do
           user.update_attribute(:admin, true)
           visit user_path(user)
         end
-        it { should have_link('All users',  href: users_path) }
-        it { should have_link('Index',      href: levels_path) }
-        it { should have_link('Upload',     href: uploadlevels_path) }
+        it { should have_link('All users',        href: users_path) }
+        it { should have_link('Level index',      href: levels_path) }
+        it { should have_link('Level upload',     href: uploadlevels_path) }
+        it { should have_link('Levelpack index',  href: levelpacks_path) }
+        it { should have_link('Levelpack create', href: new_levelpack_path) }
       end
       
       describe "followed by sign-out" do

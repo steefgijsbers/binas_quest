@@ -24,8 +24,11 @@
 									Levels <b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li><%= link_to 'Index', levels_path %></li>
-									<li><%= link_to 'Upload', uploadlevels_path %></li>
+									<li><%= link_to 'Level index', levels_path %></li>
+									<li><%= link_to 'Level upload', uploadlevels_path %></li>
+									<li class="divider"></li>
+									<li><%= link_to 'Levelpack index',  levelpacks_path %></li>
+									<li><%= link_to 'Levelpack create', new_levelpack_path %></li>
 								</ul>
 							</li>
 						<% end %>

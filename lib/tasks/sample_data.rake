@@ -27,5 +27,14 @@ namespace :db do
                     img_src: img_src,
                     solution: solution)
     end
+    99.times do |n|
+      if n<10
+        name = "levelpack_0#{n}"
+      else
+        name = "levelpack_#{n}"
+      end
+      title = "Mooie titel voor levelpack nummer #{n}"
+      Levelpack.create(name: name, title: title)
+    end
   end
 end
