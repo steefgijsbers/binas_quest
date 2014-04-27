@@ -9,7 +9,30 @@ describe Levelpack do
   it { should respond_to(:name) }
   it { should respond_to(:title) }
   it { should respond_to(:solution) }
+  it { should respond_to(:lp_l_relationships) }
+  it { should respond_to(:corresponding_levels) }
+  it { should respond_to(:add!) }
+  it { should respond_to(:containing?) }
   
+  
+  
+  describe "adding level to levelpack" do
+    let(:level) { FactoryGirl.create(:level) }
+    before do
+      levelpack.save
+      levelpack.add!(level)
+    end
+    
+    it { should be_containing(level) }
+    its(:corresponding_levels) { should include(level) }
+    
+    describe "and deleting it again" do
+      before { levelpack.remove!(level) }
+      
+      it { should_not be_containing(level) }
+      its(:corresponding_levels) { should_not include(level) }
+    end
+  end
   
   describe "when name is not present" do
     before { levelpack.name = " " }   

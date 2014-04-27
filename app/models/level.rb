@@ -1,4 +1,7 @@
 class Level < ActiveRecord::Base
+  has_many :lp_l_relationships, foreign_key: "level_id", dependent: :destroy
+  
+  
   before_save { self.name = name.downcase }
   
   validates :name,      presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
@@ -16,4 +19,6 @@ class Level < ActiveRecord::Base
                              ce|pr|nd|pm|sm|eu|gd|tb|dy|ho|er|tm|yb|lu|
                              th|pa|u|np|pu|am|cm|bk|cf|es|fm|md|no|lr)\Z/
   validates :solution,  presence: true, format: { with: VALID_SOLUTION_REGEX }
+  
+
 end

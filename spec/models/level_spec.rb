@@ -9,8 +9,12 @@ describe Level do
   it { should respond_to(:name) }
   it { should respond_to(:img_src) }
   it { should respond_to(:solution) }
+  it { should respond_to(:lp_l_relationships) }
   
   it { should be_valid }
+  
+  
+  
   
   describe "when name is not present" do
     before { @level.name = " " }
