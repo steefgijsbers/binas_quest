@@ -13,6 +13,7 @@ class LevelpacksController < ApplicationController
   
   def create
     @levelpack = Levelpack.new(levelpack_params)
+    @levelpack.solution = ""
     if @levelpack.save
       flash[:success] = "Levelpack has been succesfully created."
       redirect_to levelpacks_url
