@@ -1,0 +1,21 @@
+<% provide :title, 'Edit levelpack' %>
+
+<h1>Edit levelpack</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for @levelpack do |f| %>
+			<%= render '/shared/levelpack_error_messages' %>
+			
+			<%= f.label :name, "Name: (format = 'levelpack_00')" %>
+			<%= f.text_field :name %>
+			
+			<%= f.label :title, "Title: (max 50 char)" %>
+			<%= f.text_field :title %>
+      
+			<%= label_tag :level_name, "Link level:" %>
+			<%= text_field_tag :level_name %>
+			
+			<%= f.submit "Save levelpack", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>
