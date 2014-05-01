@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427072532) do
+ActiveRecord::Schema.define(version: 20140501081759) do
 
   create_table "levelpacks", force: true do |t|
     t.string   "name"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20140427072532) do
   add_index "lp_l_relationships", ["level_id"], name: "index_lp_l_relationships_on_level_id"
   add_index "lp_l_relationships", ["levelpack_id", "level_id"], name: "index_lp_l_relationships_on_levelpack_id_and_level_id", unique: true
   add_index "lp_l_relationships", ["levelpack_id"], name: "index_lp_l_relationships_on_levelpack_id"
+
+  create_table "u_lp_relationships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "levelpack_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "u_lp_relationships", ["levelpack_id"], name: "index_u_lp_relationships_on_levelpack_id"
+  add_index "u_lp_relationships", ["user_id", "levelpack_id"], name: "index_u_lp_relationships_on_user_id_and_levelpack_id", unique: true
+  add_index "u_lp_relationships", ["user_id"], name: "index_u_lp_relationships_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "naam"

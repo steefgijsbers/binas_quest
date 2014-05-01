@@ -17,6 +17,10 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:u_lp_relationships) }
+  it { should respond_to(:unlocked_levelpacks) }
+  it { should respond_to(:unlock!) }
+  it { should respond_to(:containing?) }
   
   it { should be_valid }
   it { should_not be_admin }
@@ -121,5 +125,16 @@ describe User do
   describe "with a password that's to short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
+  end
+  
+  describe "unlocking levelpack" do
+    let(:levelpack) { FactoryGirl.create(:levelpack) }
+    before do
+      @user.save
+      @user.unlock!(levelpack)
+    end
+    
+    it { should be_containing(levelpack) }
+    its(:unlocked_levelpacks) { should include(levelpack) }
   end
 end

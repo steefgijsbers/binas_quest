@@ -1,4 +1,6 @@
 class Levelpack < ActiveRecord::Base
+  has_many :u_lp_relationships, foreign_key: "levelpack_id", dependent: :destroy
+  
   has_many :lp_l_relationships, foreign_key: "levelpack_id", dependent: :destroy
   has_many :corresponding_levels, through: :lp_l_relationships, source: :level
   
