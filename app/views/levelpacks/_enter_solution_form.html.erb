@@ -1,0 +1,5 @@
+<%= form_for :check_solution do |f| %>
+	<%= label_tag :entered_solution %>
+	<%= text_field_tag :entered_solution %>
+	<%= f.submit 'Check', class: "btn btn-primary" %>
+<% end %>

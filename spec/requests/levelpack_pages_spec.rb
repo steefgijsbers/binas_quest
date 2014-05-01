@@ -83,7 +83,7 @@ describe "Level pages" do
       before { visit levelpack_path(levelpack) }
 
       it { should have_content(levelpack.name) }
-      it { should have_title(levelpack.name) }
+      it { should have_title(levelpack.title) }
       it { should have_link('Edit levelpack', href: edit_levelpack_path(levelpack))}
     end
 

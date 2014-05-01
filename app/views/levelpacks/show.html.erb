@@ -1,13 +1,22 @@
-<% provide :title, @levelpack.name %>
+<% provide :title, @levelpack.title %>
 
-<h1><%= @levelpack.name %></h1>
-<p>name: <%= @levelpack.name %></p>
-<p>title: <%= @levelpack.title %></p>
-<p>solution: <%= @levelpack.solution %></p>
-<p></p>
-<ul>
-	<% @levels.each do |lvl| %>
-		<li><%= link_to lvl.name, lvl %></li>
+<div class="row">
+	<% if current_user.admin? %>
+		<%= render 'admin_sidebar'%>
 	<% end %>
-</ul>
-<%= link_to 'Edit levelpack', edit_levelpack_path(@levelpack) %>
+
+	<div class="span8">
+		<h2><%= @levelpack.title %></h2>
+		<section id="levelpack_thumbs">
+			<%= render 'levelpack_thumbs' %>
+		</section>
+		<section id="level_image">
+			<%= image_tag(@level.img_src) %>
+		</section>
+		<section id="enter_solution_form">
+			<%= render 'enter_solution_form' %>
+		</section>
+		
+	</div>
+
+</div>

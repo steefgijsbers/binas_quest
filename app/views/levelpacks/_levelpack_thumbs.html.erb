@@ -1,0 +1,3 @@
+<% @levelpack.corresponding_levels.each do |level| %>
+	<%= link_to(image_tag(level.img_src), action: :toggle_level, levelpack_id: @levelpack.id, level_id: level.id ) %>
+<% end %>

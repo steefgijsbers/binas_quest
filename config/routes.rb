@@ -1,5 +1,9 @@
 BinasQuest::Application.routes.draw do
-  resources :levelpacks
+  resources :levelpacks do
+    collection do
+      get :toggle_level
+    end
+  end
   resources :levels
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -11,6 +15,9 @@ BinasQuest::Application.routes.draw do
   match '/uploadlevels', to: 'levels#new',           via: 'get'
   match '/signin',       to: 'sessions#new',         via: 'get'
   match '/signout',      to: 'sessions#destroy',     via: 'delete'
+ 
+  
+
   
 
   
