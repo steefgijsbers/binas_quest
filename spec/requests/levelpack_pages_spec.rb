@@ -47,27 +47,35 @@ describe "Level pages" do
 
       it { should have_content('Create levelpack') }
       it { should have_title(full_title('Create levelpack')) }
+      it { should have_content('1st level in levelpack') }
+      it { should have_content('2nd level in levelpack') }
+      it { should have_content('3rd level in levelpack') }
+      it { should have_content('4th level in levelpack') }
+      it { should have_content('5th level in levelpack') }
 
       describe "and tries to create levelpack" do
         let(:submit) { 'Create levelpack' }
 
         describe "with invalid information" do
           it "should not create a new levelpack" do
-            expect { click_button submit }.not_to change Level, :count
+            expect { click_button submit }.not_to change Levelpack, :count
           end
         end
 
         describe "with valid information" do
+          let(:level1) { FactoryGirl.create(:level, name: "level1") }
+          let(:level2) { FactoryGirl.create(:level, name: "level2") }
           before do
             fill_in "Name: (format = 'levelpack_00')", with: "levelpack_00"
             fill_in "Title: (max 50 char)",            with: "example title"
+            fill_in "1st level in levelpack",          with: level1.name
+            fill_in "2nd level in levelpack",          with: level2.name
           end
 
           it "should create a new levelpack" do
             expect { click_button submit }.to change(Levelpack, :count).by(1)
           end
         end
-
       end
     end
 
@@ -76,27 +84,37 @@ describe "Level pages" do
 
       it { should have_content(levelpack.name) }
       it { should have_title(levelpack.name) }
+      it { should have_link('Edit levelpack', href: edit_levelpack_path(levelpack))}
     end
 
     describe "edit page" do
-      describe "and creates a levelpack relationship" do
+      before { visit edit_levelpack_path(levelpack) }
 
-        let(:level) { FactoryGirl.create :level }
+      it { should have_content('Edit levelpack') }
+      it { should have_title(full_title('Edit levelpack')) }
+      it { should have_content('1st level in levelpack') }
+      it { should have_content('2nd level in levelpack') }
+      it { should have_content('3rd level in levelpack') }
+      it { should have_content('4th level in levelpack') }
+      it { should have_content('5th level in levelpack') }
 
-        before do
-          visit edit_levelpack_path(levelpack)
-          fill_in "Link level:", with: level.name
-          click_button 'Save levelpack'
+      describe "and tries to edit levelpack" do
+        let(:submit) { 'Save levelpack' }
+
+        describe "with valid information" do
+          let(:level1) { FactoryGirl.create(:level, name: "level 1") }
+          let(:level2) { FactoryGirl.create(:level, name: "level 2") }
+          before do
+            fill_in "Title: (max 50 char)",            with: "example title"
+            fill_in "1st level in levelpack",          with: level1.name
+            fill_in "2nd level in levelpack",          with: level2.name
+            click_button submit
+          end
+          
+          it { should have_content levelpack.name }
+          it { should have_selector('li', text: level1.name) }
+          it { should have_selector('li', text: level2.name) }        
         end
-
-        it "should redirect to the show page" do
-          expect(current_path).to eq(levelpack_path levelpack)
-        end
-
-        it "should show up in the levels" do
-          expect(page).to have_content level.name
-        end
-
       end
     end
 

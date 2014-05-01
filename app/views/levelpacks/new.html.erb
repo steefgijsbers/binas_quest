@@ -12,7 +12,22 @@
 			<%= f.label :title, "Title: (max 50 char)" %>
 			<%= f.text_field :title %>
 			
-			<%= f.submit "Create levelpack", class: "btn btn-large btn-primary" %>
+			<%= label_tag :level1_name, "1st level in levelpack" %>
+			<%= text_field_tag :level1_name %>
+			
+			<%= label_tag :level2_name, "2nd level in levelpack" %>
+			<%= text_field_tag :level2_name %>
+			
+			<%= label_tag :level3_name, "3rd level in levelpack" %>
+			<%= text_field_tag :level3_name %>
+			
+			<%= label_tag :level4_name, "4th level in levelpack" %>
+			<%= text_field_tag :level4_name %>
+			
+			<%= label_tag :level5_name, "5th level in levelpack" %>
+			<%= text_field_tag :level5_name %>
+			
+			<%= f.submit "Create levelpack", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

@@ -14,24 +14,38 @@ class LevelpacksController < ApplicationController
 
   def create
     @levelpack = Levelpack.new(levelpack_params)
-    @levelpack.solution = ""
     if @levelpack.save
+      add_levels_to @levelpack
+      update_solution_of @levelpack
       flash[:success] = "Levelpack has been succesfully created."
-      redirect_to levelpacks_url
+      redirect_to @levelpack
     else
       render 'new'
     end
   end
 
   def edit
+    lvls = @levelpack.corresponding_levels
+    @levels = []
+    (0..4).each do |n|
+      if lvls[n]
+        @levels[n] = lvls[n].name
+      else
+        @levels[n] = ""
+      end
+    end
   end
 
   def update
-    unless params[:level_name].blank?
-      level = Level.find_by_name params[:level_name]
-      @levelpack.add! level
+    if @levelpack.update_attributes(levelpack_params)
+      remove_levels_of @levelpack
+      add_levels_to @levelpack
+      update_solution_of @levelpack
+      flash[:success] = "Levelpack has been successfully saved."    
+      redirect_to @levelpack
+    else
+      render 'edit'
     end
-    redirect_to levelpack_path(@levelpack)
   end
 
   def index
@@ -46,7 +60,28 @@ class LevelpacksController < ApplicationController
 
 
   private
-
+    
+    def add_levels_to(levelpack)
+      (1..5).each do |n|
+        unless params["level#{n}_name"].blank?
+          level = Level.find_by(name: params["level#{n}_name"])
+          levelpack.add! level
+        end
+      end            
+    end
+    
+    def remove_levels_of(levelpack)
+      levelpack.lp_l_relationships.each { |r| r.destroy }
+    end
+    
+    def update_solution_of(levelpack)
+      solution = "" 
+      levelpack.corresponding_levels.each do |lvl|
+        solution += lvl.solution
+      end
+      levelpack.update_attribute(:solution, solution)
+    end
+    
     def find_levelpack
       @levelpack = Levelpack.find(params[:id])
     end

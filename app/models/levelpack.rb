@@ -13,9 +13,6 @@ class Levelpack < ActiveRecord::Base
   
   def add!(level)
     self.lp_l_relationships.create!(level_id: level.id)
-    solution = self.solution
-    solution += level.solution
-    self.update_attribute(:solution, solution)
   end
   
   def remove!(level)

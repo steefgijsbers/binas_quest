@@ -16,7 +16,7 @@ def make_users
                password: "foobar",
                password_confirmation: "foobar",
                admin: true)
-  99.times do |n|
+  50.times do |n|
     naam  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
     klas  = "5Hb"
@@ -30,7 +30,7 @@ def make_users
 end
   
 def make_levels  
-  99.times do |n|
+  60.times do |n|
     name  = "Level #{n+1}"
     img_src = "#{n+1}.bmp"
     solution = "he"      
@@ -41,7 +41,7 @@ def make_levels
 end
   
 def make_levelpacks  
-  99.times do |n|
+  60.times do |n|
     if n<10
       name = "levelpack_0#{n}"
     else

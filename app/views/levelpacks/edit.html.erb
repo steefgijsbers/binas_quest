@@ -3,19 +3,29 @@
 <h1>Edit levelpack</h1>
 <div class="row">
 	<div class="span6 offset3">
+		<h2>Name: <%= @levelpack.name %></h2>
 		<%= form_for @levelpack do |f| %>
 			<%= render '/shared/levelpack_error_messages' %>
 			
-			<%= f.label :name, "Name: (format = 'levelpack_00')" %>
-			<%= f.text_field :name %>
-			
 			<%= f.label :title, "Title: (max 50 char)" %>
 			<%= f.text_field :title %>
-      
-			<%= label_tag :level_name, "Link level:" %>
-			<%= text_field_tag :level_name %>
 			
-			<%= f.submit "Save levelpack", class: "btn btn-large btn-primary" %>
+			<%= label_tag :level1_name, "1st level in levelpack" %>
+			<%= text_field_tag :level1_name, @levels[0] %>
+			
+			<%= label_tag :level2_name, "2nd level in levelpack" %>
+			<%= text_field_tag :level2_name, @levels[1] %>
+			
+			<%= label_tag :level3_name, "3rd level in levelpack" %>
+			<%= text_field_tag :level3_name, @levels[2] %>
+			
+			<%= label_tag :level4_name, "4th level in levelpack" %>
+			<%= text_field_tag :level4_name, @levels[3] %>
+			
+			<%= label_tag :level5_name, "5th level in levelpack" %>
+			<%= text_field_tag :level5_name, @levels[4] %>
+			
+			<%= f.submit "Save levelpack", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

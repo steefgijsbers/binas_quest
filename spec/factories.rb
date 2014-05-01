@@ -22,6 +22,6 @@ FactoryGirl.define do
   factory :levelpack do
     name      "levelpack_00"
     title     "example title"
-    solution  "hehehehehe"
+    solution  ""
   end
 end
