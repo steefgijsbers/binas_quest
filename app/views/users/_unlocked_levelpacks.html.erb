@@ -1,7 +1,7 @@
 <div class="unlocked_levelpacks">
 	<ul>
-		<%= @user.unlocked_levelpacks.each do |lp| %>
-			<li><%= lp.name %></li>
+		<% @user.unlocked_levelpacks.each do |lp| %>
+			<li><%= link_to lp.title, levelpack_path(lp) %></li>
 		<% end %>
 	</ul>
 </div>
