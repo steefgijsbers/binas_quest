@@ -18,6 +18,21 @@ class User < ActiveRecord::Base
     self.u_lp_relationships.create!(levelpack_id: levelpack.id)
   end
   
+  def unlock_levelpack_following(levelpack)
+    next_levelpack = Levelpack.find_by_name name_of_next(levelpack)
+    self.unlock! next_levelpack #unless self.containing? next_levelpack
+  end
+  
+  def name_of_next(levelpack)
+    levelpack_nr = levelpack.name.last(2).to_i
+    next_levelpack_nr = levelpack_nr += 1
+    if next_levelpack_nr < 10
+      "levelpack_0#{next_levelpack_nr}"    
+    else
+      "levelpack_#{next_levelpack_nr}"
+    end
+  end
+  
   def containing?(levelpack)
     self.u_lp_relationships.find_by(levelpack_id: levelpack.id)
   end

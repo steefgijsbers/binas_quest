@@ -8,7 +8,9 @@ class LevelpacksController < ApplicationController
     @levelpack = Levelpack.find_by(id: params[:levelpack_id])
     if params[:guess] == @levelpack.solution
       flash[:success] = "JUIST!"
-      redirect_to root_url
+      @user = current_user
+      @user.unlock_levelpack_following(@levelpack)
+      redirect_to @user
     else
       flash[:error] = "Antwoord is niet correct."
       @level = Level.find_by(id: params[:level_id])
@@ -77,6 +79,17 @@ class LevelpacksController < ApplicationController
     redirect_to levelpacks_url
   end
 
+
+  def unlock_levelpack_following(levelpack)
+    next_levelpack = Levelpack.find_by_name name_of_next(levelpack)
+    self.unlock! next_levelpack
+  end
+  
+  def name_of_next(levelpack)
+    levelpack_nr = levelpack.name.last(2).to_i
+    next_levelpack_nr = levelpack_nr += 1
+    "levelpack_#{next_levelpack_nr}"    
+  end
 
   private
     
