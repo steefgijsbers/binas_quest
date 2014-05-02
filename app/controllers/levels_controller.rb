@@ -13,6 +13,7 @@ class LevelsController < ApplicationController
   def create
     @level = Level.new(level_params) 
     if @level.save
+      @level.update_attribute(:thumb_src, generate_thumb_src(@level.img_src))
       flash[:success] = "Upload geslaagd."
       redirect_to @level
     else
@@ -32,6 +33,10 @@ class LevelsController < ApplicationController
   
   
   private
+  
+  def generate_thumb_src(img_src)
+    img_src.split('.')[0] += "_thumb.bmp"
+  end
   
   def level_params
     params.require(:level).permit(:name, :img_src, :solution)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501175036) do
+ActiveRecord::Schema.define(version: 20140502185556) do
 
   create_table "levelpacks", force: true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140501175036) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "levelpack_id"
+    t.string   "thumb_src"
   end
 
   add_index "levels", ["levelpack_id"], name: "index_levels_on_levelpack_id", unique: true
