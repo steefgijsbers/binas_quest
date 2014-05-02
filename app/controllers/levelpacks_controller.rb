@@ -18,19 +18,17 @@ class LevelpacksController < ApplicationController
     end
   end
 
-  def toggle_level
-    @levelpack = Levelpack.find_by(id: params[:levelpack_id])
-    @level = Level.find_by(id: params[:level_id])
-    render 'show'
-  end
-
   def new
     @levelpack = Levelpack.new
   end
 
   def show
-    @levels = @levelpack.corresponding_levels
-    @level = @levels.first
+    @levelpack ||= Levelpack.find_by(id: params[:levelpack_id])
+    if params[:level_id]
+      @level = Level.find_by(id: params[:level_id])
+    else
+      @level = @levelpack.corresponding_levels.first
+    end
   end
 
   def create
