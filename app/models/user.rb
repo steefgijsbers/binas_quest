@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   def unlock_levelpack_following(levelpack)
     next_levelpack = Levelpack.find_by_name name_of_next(levelpack)
-    self.unlock! next_levelpack #unless self.containing? next_levelpack
+    self.unlock! next_levelpack unless self.containing? next_levelpack
   end
   
   def name_of_next(levelpack)

@@ -1,6 +1,6 @@
 class LevelpacksController < ApplicationController
   before_action :signed_in_user
-  before_action :admin_user
+  before_action :admin_user, only: [:new, :create, :edit, :update, :index, :destroy]
 
   before_action :find_levelpack, only: [:show, :destroy, :edit, :update]
 
@@ -14,7 +14,7 @@ class LevelpacksController < ApplicationController
     else
       flash[:error] = "Antwoord is niet correct."
       @level = Level.find_by(id: params[:level_id])
-      render 'show'
+      redirect_to @levelpack
     end
   end
 

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.unlock! Levelpack.first
       sign_in @user
       flash[:success] = "Welkom bij de Binas Quest!"
       redirect_to @user

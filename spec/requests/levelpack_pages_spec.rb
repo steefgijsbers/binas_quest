@@ -84,7 +84,7 @@ describe "Level pages" do
 
       it { should have_content(levelpack.name) }
       it { should have_title(levelpack.title) }
-      it { should have_link('Edit levelpack', href: edit_levelpack_path(levelpack))}
+      it { should have_link('Edit', href: edit_levelpack_path(levelpack))}
     end
 
     describe "edit page" do
@@ -123,6 +123,7 @@ describe "Level pages" do
         visit new_levelpack_path
         fill_in "Name: (format = 'levelpack_00')", with: "levelpack_00"
         fill_in "Title: (max 50 char)",            with: "example title"
+        fill_in "1st level in levelpack",          with: "level 1"
         click_button 'Create levelpack'
         visit levelpacks_path
       end
