@@ -1,5 +1,7 @@
-<%= form_for :check_solution do |f| %>
-	<%= label_tag :entered_solution %>
-	<%= text_field_tag :entered_solution %>
-	<%= f.submit 'Check', class: "btn btn-primary" %>
+<%= form_tag(check_solution_path, method: 'post') do %>
+	<%= label_tag(:guess, "Antwoord: ") %>
+	<%= text_field_tag(:guess) %>
+	<%= hidden_field_tag(:levelpack_id, @levelpack.id) %>
+	<%= hidden_field_tag(:level_id, @level.id) %>
+	<%= submit_tag("Check") %>
 <% end %>

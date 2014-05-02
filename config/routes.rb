@@ -15,6 +15,7 @@ BinasQuest::Application.routes.draw do
   match '/uploadlevels', to: 'levels#new',           via: 'get'
   match '/signin',       to: 'sessions#new',         via: 'get'
   match '/signout',      to: 'sessions#destroy',     via: 'delete'
+  match '/check_solution', to: 'levelpacks#check_solution', via: 'post'
  
   
 

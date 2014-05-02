@@ -4,6 +4,17 @@ class LevelpacksController < ApplicationController
 
   before_action :find_levelpack, only: [:show, :destroy, :edit, :update]
 
+  def check_solution
+    @levelpack = Levelpack.find_by(id: params[:levelpack_id])
+    if params[:guess] == @levelpack.solution
+      flash[:success] = "JUIST!"
+      redirect_to root_url
+    else
+      flash[:error] = "Antwoord is niet correct."
+      @level = Level.find_by(id: params[:level_id])
+      render 'show'
+    end
+  end
 
   def toggle_level
     @levelpack = Levelpack.find_by(id: params[:levelpack_id])
