@@ -3,7 +3,6 @@ FactoryGirl.define do
     sequence(:naam)  { |n| "Person #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
     klas "5Hb"
-    progress "start"
     password "foobar"
     password_confirmation "foobar"
          
