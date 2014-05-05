@@ -19,7 +19,7 @@ FactoryGirl.define do
   end
   
   factory :levelpack do
-    name      "levelpack_00"
+    name      "levelpack_01"
     title     "example title"
     solution  ""
   end

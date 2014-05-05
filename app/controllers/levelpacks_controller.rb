@@ -35,7 +35,7 @@ class LevelpacksController < ApplicationController
     @levelpack = Levelpack.new(levelpack_params)
     if @levelpack.save
       add_levels_to @levelpack
-      update_solution_of @levelpack
+      @levelpack.update_solution
       flash[:success] = "Levelpack has been succesfully created."
       redirect_to @levelpack
     else
@@ -59,7 +59,7 @@ class LevelpacksController < ApplicationController
     if @levelpack.update_attributes(levelpack_params)
       remove_levels_of @levelpack
       add_levels_to @levelpack
-      update_solution_of @levelpack
+      @levelpack.update_solution
       flash[:success] = "Levelpack has been successfully saved."    
       redirect_to @levelpack
     else
@@ -102,14 +102,6 @@ class LevelpacksController < ApplicationController
     
     def remove_levels_of(levelpack)
       levelpack.lp_l_relationships.each { |r| r.destroy }
-    end
-    
-    def update_solution_of(levelpack)
-      solution = "" 
-      levelpack.corresponding_levels.each do |lvl|
-        solution += lvl.solution
-      end
-      levelpack.update_attribute(:solution, solution)
     end
     
     def find_levelpack
