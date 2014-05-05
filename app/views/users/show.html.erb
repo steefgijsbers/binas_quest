@@ -1,14 +1,8 @@
 <% provide :title, @user.naam %>
 
 <div class="row">
-	<aside class="span4">
-		<section>
-			<h1><%= @user.naam %></h1>
-		</section>
-		<section>
-			<%= render 'unlocked_levelpacks' %>
-		</section>
-	</aside>
+	<%= render 'user_sidebar' %>
+	<%= render 'levelpacks/levelpack_puzzle_mode' %>
 </div>
 
 

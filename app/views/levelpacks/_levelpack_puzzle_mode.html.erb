@@ -1,12 +1,12 @@
 <div class="span8">
 	<h2><%= @levelpack.title %></h2>
 	<section id="levelpack_thumbs">
-		<%= render 'levelpack_thumbs' %>
+		<%= render 'levelpacks/levelpack_thumbs' %>
 	</section>
 	<section id="level_image">
 		<%= image_tag(@level.img_src) %>
 	</section>
 	<section id="enter_solution_form">
-		<%= render 'enter_solution_form' %>
+		<%= render 'levelpacks/enter_solution_form' %>
 	</section>		
 </div>		
