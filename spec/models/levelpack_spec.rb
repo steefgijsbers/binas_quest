@@ -89,5 +89,18 @@ describe Levelpack do
     its(:corresponding_levels) { should include level_1 }
     its(:corresponding_levels) { should include level_2 }
     its(:solution) { should eq level_1.solution + level_2.solution }
+    
+    describe "and deleting them again" do
+      before do
+        levelpack.remove! level_1
+        levelpack.remove! level_2
+        levelpack.update_solution
+      end
+      it { should_not be_containing level_1 }
+      it { should_not be_containing level_2 }
+      its(:corresponding_levels) { should_not include level_1 }
+      its(:corresponding_levels) { should_not include level_2 }
+      its(:solution) { should eq "" }
+    end
   end 
 end
