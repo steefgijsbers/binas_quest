@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @levelpack ||= Levelpack.find_by_name "levelpack_01"
+    @levelpack ||= Levelpack.first
     if params[:level_id]
       @level = Level.find_by(id: params[:level_id])
     else

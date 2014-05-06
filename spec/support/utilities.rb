@@ -20,3 +20,14 @@ def sign_in(user, options={})
     click_button "Log in"
   end
 end
+
+def setup_start_for(user)
+  level_1 = Level.create(name: "level1", img_src: "level1.bmp", solution: "he")
+  level_1.generate_thumb_src
+  level_2 = Level.create(name: "level2", img_src: "level2.bmp", solution: "he")
+  level_2.generate_thumb_src
+  levelpack = Levelpack.create(name: "levelpack_81", title: "Test levelpack")
+  levelpack.add! level_1
+  levelpack.add! level_2
+  user.unlock! levelpack
+end
