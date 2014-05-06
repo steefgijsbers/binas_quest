@@ -76,35 +76,18 @@ describe Levelpack do
   #levelpack - level relationships
   
   let(:level_1) { FactoryGirl.create(:level, name: "level 1", solution: "he") }
+  let(:level_2) { FactoryGirl.create(:level, name: "level 2", solution: "na") }
   
-  describe "adding level to levelpack" do   
+  describe "adding levels to levelpack" do
     before do
       levelpack.add! level_1
-      levelpack.update_solution
+      levelpack.add! level_2
+      levelpack.update_solution      
     end
     it { should be_containing level_1 }
-    its(:corresponding_levels) { should include level_1 }
-    its(:solution) { should eq level_1.solution }
-  #end
-    
-  describe "and adding a second level to levelpack" do
-    let(:level_2) { FactoryGirl.create(:level, name: "level 2", solution: "na") }
-    before do
-      #levelpack.add! level_1
-      levelpack.add! level_2
-      levelpack.update_solution
-      # raise levelpack.lp_l_relationships.count.to_s + " == " + levelpack.corresponding_levels.count.to_s
-      raise LpLRelationship.all.inspect
-      raise levelpack.lp_l_relationships.count.to_s + " " + levelpack.lp_l_relationships.to_a.inspect + " " + 
-
-      levelpack.corresponding_levels.count.to_s + " " + levelpack.corresponding_levels.to_a.inspect + " "
-    end
-    
     it { should be_containing level_2 }
+    its(:corresponding_levels) { should include level_1 }
     its(:corresponding_levels) { should include level_2 }
-    its(:solution) { should eq level_1.solution+level_2.solution }
-  end
-  
-  end
-  
+    its(:solution) { should eq level_1.solution + level_2.solution }
+  end 
 end
