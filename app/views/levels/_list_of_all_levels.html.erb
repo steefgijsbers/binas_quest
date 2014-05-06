@@ -1,0 +1,9 @@
+<ul>
+	<% @levels.each do |lvl| %>
+		<li>
+			<span class="left"><%= link_to(lvl.name, level_path(lvl)) %></span>		
+			<span class="right"><%= link_to 'Delete', lvl, method: :delete, data: { confirm: "Are you sure you want to delete this level?" } %></span>	
+			</br>									
+		</li>
+	<% end %>
+</ul>	

@@ -1,3 +1,24 @@
 // Place all the styles related to the Levels controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* show page */
+
+.levels_show{
+  img{
+  width: 500px
+  }
+}
+
+.levels_index{
+  li{
+    list-style-type: none;
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+}
+

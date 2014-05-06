@@ -1,0 +1,12 @@
+<aside class="span4">
+	<section>
+		<li><%= @level.name %></li>
+		<li><%= @level.img_src %></li>
+		<li><%= @level.thumb_src %></li>
+		<li><%= @level.solution %></li>
+	</section>
+	<section class="nav navbar">		
+		<li><%= link_to('Level index', levels_path) %></li>
+		<li><%= link_to('Upload new level', uploadlevels_path) %></li>
+	</section>
+</aside>

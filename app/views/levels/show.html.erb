@@ -1,25 +1,14 @@
 <% provide :title, @level.name %>
 
-<div class="row">
-	<aside class="span4">
-		<section>
-			<ul>
-				<li><%= @level.name %></li>
-				<li><%= @level.img_src %></li>
-				<li><%= @level.thumb_src %></li>
-				<li><%= @level.solution %></li>
-			</ul>
-		</section>
-	</aside>
+<div class="levels_show">
+	<div class="row">
+		<%= render 'level_sidebar' %>
+	
+		<div class="span8">
+			<%= image_tag(@level.img_src, alt: @level.name) %>
+		</div>
+	</div>
 </div>
 
-<div class="level_img">
-	<%= image_tag(@level.img_src, alt: @level.name) %>
-</div>
 
-<div class="nav navbar">
-	<ul>
-		<li><%= link_to('Level index', levels_path) %></li>
-		<li><%= link_to('Upload new level', uploadlevels_path) %></li>
-	</ul>
-</div>
+
