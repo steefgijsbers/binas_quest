@@ -7,6 +7,11 @@ describe LpLRelationship do
   let(:lp_l_relationship) { levelpack.lp_l_relationships.build(level_id: level.id) }
   
   subject { lp_l_relationship }
+
+  it { should respond_to :levelpack }
+  it { should respond_to :level }
+  its(:levelpack) { should eq levelpack }
+  its(:level)     { should eq level }  
   
   it { should be_valid }
   
@@ -18,12 +23,5 @@ describe LpLRelationship do
   describe "when level_id is not present" do
     before { lp_l_relationship.level_id = nil }
     it { should_not be_valid }
-  end
-  
-  describe "levelpack methods" do
-    it { should respond_to :levelpack }
-    it { should respond_to :level }
-    its(:levelpack) { should eq levelpack }
-    its(:level)     { should eq level }
   end
 end

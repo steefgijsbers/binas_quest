@@ -8,14 +8,12 @@ describe ULpRelationship do
   
   subject { u_lp_relationship }
   
-  it { should be_valid }
+  it { should respond_to(:user) }
+  it { should respond_to(:levelpack) }
+  its(:user) { should eq user }
+  its(:levelpack) { should eq levelpack }
   
-  describe "user methods" do
-    it { should respond_to(:user) }
-    it { should respond_to(:levelpack) }
-    its(:user) { should eq user }
-    its(:levelpack) { should eq levelpack }
-  end
+  it { should be_valid }
   
   describe "when user_id is not present" do
     before { u_lp_relationship.user_id = nil }
