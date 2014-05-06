@@ -1,22 +1,22 @@
-<% provide :title, 'Upload Levels' %>
+<% provide :title, 'Upload level' %>
 
-<h1>Upload Levels</h1>
+<h1>Upload level to database</h1>
 
 <div class="row">
 	<div class="span6 offset3">
 		<%= render 'shared/level_error_messages' %>
 		<%= form_for(@level) do |f| %>
 			
-			<%= f.label(:name, 'name: (wordt lowercase opgeslagen ; max 50 char)') %>
+			<%= f.label(:name, 'Name: (wordt lowercase opgeslagen ; max 50 char)') %>
 			<%= f.text_field(:name) %>
 			
-			<%= f.label(:img_src, 'img_src: (plaats afb in /assets/images ; voer hier de bestandsnaam in)') %>
+			<%= f.label(:img_src, 'Image source: (plaats afb in /assets/images ; voer hier de bestandsnaam in)') %>
 			<%= f.text_field(:img_src) %>
 			
-			<%= f.label(:solution, 'solution: (symbool van element ; lowercase)') %>
+			<%= f.label(:solution, 'Solution: (symbool van element ; lowercase)') %>
 			<%= f.text_field(:solution) %>
 			
-			<%= f.submit "Upload level", class: "btn btn-large btn-primary" %>
+			<%= f.submit "Upload level", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

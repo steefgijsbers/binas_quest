@@ -67,6 +67,10 @@ describe "Level pages" do
           it "should create a new level" do
             expect { click_button submit }.to change(Level, :count).by(1)
           end
+          
+          it "should redirect to level#show" do
+            expect { click_button(submit).response }.to redirect_to level_path(level)
+          end
         end
       end      
     end
