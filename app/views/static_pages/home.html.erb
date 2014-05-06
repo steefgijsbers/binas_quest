@@ -1,11 +1,15 @@
 <div class="center hero-unit">
 	<h1>Welkom bij de Binas Quest</h1>
-    <p class="home_page_btn"><%= link_to "Registreer", registreer_path, class: "btn btn-large btn-primary" %></p>
-    
-	<p><%= link_to "Log in", signin_path, class: "btn btn-large btn-primary" %></p>
-	
-	<p><%= link_to 'Hoe werkt het?', help_path, class: "btn btn-large btn-primary" %></p>
-	
-	<p><%= link_to 'Hall of Fame', '#', class: "btn btn-large btn-primary" %></p>
+    <div class="home_page_buttons">
+    	<div class="spacer"></div>
+    	<% if @user %>
+    		<%= render 'signed_in_user_buttons' %>
+    	<% else %>
+    		<%= render 'non_signed_in_user_buttons' %>
+    	<% end %>
+		<div class="spacer"></div>
+		<p><%= link_to 'Hoe werkt het?', help_path, class: "btn btn-large btn-info" %></p>	
+		<p><%= link_to 'Hall of Fame',   '#',       class: "btn btn-large btn-info" %></p>
+	</div>
 	
 </div>
