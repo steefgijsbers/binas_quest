@@ -11,7 +11,7 @@ class Levelpack < ActiveRecord::Base
   validates :solution, format: { with: VALID_SOLUTION_REGEX }
   
   def corresponding_levels
-    self.levels
+    self.levels(true)
   end
   
   def add!(level)
