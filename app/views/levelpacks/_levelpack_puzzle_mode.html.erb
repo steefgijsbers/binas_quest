@@ -1,12 +1,16 @@
 <div class="span8">
-	<h2><%= @levelpack.title %></h2>
-	<section id="levelpack_thumbs">
-		<%= render 'levelpacks/levelpack_thumbs' %>
-	</section>
-	<section id="level_image">
-		<%= image_tag(@level.img_src) %>
-	</section>
-	<section id="enter_solution_form">
-		<%= render 'levelpacks/enter_solution_form' %>
-	</section>		
+	<h3><%= @levelpack.title %></h3>
+	<% unless @levels.blank? %>
+		<section id="levelpack_thumbs">
+			<%= render 'levelpacks/levelpack_thumbs' %>
+		</section>
+		<section id="level_image">
+			<%= image_tag(@level.img_src) unless @level.nil? %>
+		</section>
+		<section id="enter_solution_form">
+			<%= render 'levelpacks/enter_solution_form' %>
+		</section>		
+	<% else %>
+		<h2>Levelpack does not contain any levels</h2>
+	<% end %>
 </div>		

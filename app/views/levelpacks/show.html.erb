@@ -1,18 +1,6 @@
 <% provide :title, @levelpack.title %>
 
 <div class="row">
-	<% if current_user.admin? %>
-		<%= render 'admin_sidebar' %>
-	<% else %>
-		<% @user = current_user %>
-		<%= render 'users/user_sidebar' %>
-	<% end %>
-
-	
-	<% if(current_user.containing?(@levelpack) || (current_user.admin?)) %>		
-		<%= render 'levelpack_puzzle_mode' %>
-	<% else %>
-		<h3>Je hebt dit levelpack nog niet unlocked</h3>	
-	<% end %>
-
+	<%= render 'levelpack_sidebar' %>		
+	<%= render 'levelpack_puzzle_mode' %>	
 </div>
