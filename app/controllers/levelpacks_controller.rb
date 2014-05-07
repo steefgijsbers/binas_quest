@@ -1,6 +1,6 @@
 class LevelpacksController < ApplicationController
   before_action :signed_in_user
-  before_action :admin_user, only: [:new, :create, :edit, :update, :index, :destroy]
+  before_action :admin_user
 
   before_action :find_levelpack, only: [:show, :destroy, :edit, :update]
 
@@ -24,11 +24,12 @@ class LevelpacksController < ApplicationController
 
   def show
     @levelpack ||= Levelpack.find_by(id: params[:levelpack_id])
+    @levels = @levelpack.corresponding_levels
     if params[:level_id]
       @level = Level.find_by(id: params[:level_id])
     else
       @level = @levelpack.corresponding_levels.first
-    end
+    end        
   end
 
   def create

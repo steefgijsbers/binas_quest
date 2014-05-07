@@ -57,6 +57,12 @@ h2 {
   color: $grayLight;
 }
 
+h3 {
+  font-size: 1.4em;
+  color: blue;
+  margin-bottom: 20px;
+  text-align: center;
+}
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -109,6 +115,20 @@ input {
 #header-spacer {
   color: grey;
   margin-top: 9px;
+}
+
+/* index of user, level, levelpack */
+
+.database_index{
+  li{
+    list-style-type: none;
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
 }
 
 /* sidebar */

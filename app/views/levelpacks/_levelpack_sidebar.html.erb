@@ -1,0 +1,18 @@
+<div class="admin_sidebar">	
+	<aside class="span4">
+		<section>
+			<h4>Levelpack info</h4>
+			<li><%= @levelpack.name %></li>
+			<li><%= @levelpack.title %></li>
+			<% @levels.each do |level| %>
+				<li><%= link_to level.name, level %></li>
+			<% end %>
+			<li>Solution: <%= @levelpack.solution %></li>
+		</section>
+		<section class="nav navbar">
+			<li><%= link_to 'Edit', edit_levelpack_path(@levelpack) %></li>
+			<li><%= link_to 'Delete', levelpack_path(@levelpack), method: :delete,
+																  data: { confirm: "Are you sure you want to delete this level?" } %></li>
+		</section>
+	</aside>
+</div>

@@ -1,0 +1,10 @@
+<ul>
+	<% @levelpacks.each do |levelpack| %>
+		<li>
+			<span class="left"><%= link_to(levelpack.name, levelpack_path(levelpack)) %></span>		
+			<span class="right"><%= link_to 'Delete', levelpack, method: :delete, 
+													  data: { confirm: "Are you sure you want to delete this levelpack?" } %></span>	
+			</br>									
+		</li> 
+	<% end %>
+</ul>

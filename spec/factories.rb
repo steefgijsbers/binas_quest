@@ -15,6 +15,7 @@ FactoryGirl.define do
   factory :level do
     name      "examplelevel"
     img_src   "examplelevel.jpg"
+    thumb_src "examplelevel_thumb.jpg"
     solution  "he"
   end
   
