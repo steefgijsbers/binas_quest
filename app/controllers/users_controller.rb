@@ -13,12 +13,10 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @levelpack ||= Levelpack.first
-    if params[:level_id]
-      @level = Level.find_by(id: params[:level_id])
-    else
-      @level = @levelpack.corresponding_levels.first
-    end
+    @unlocked_levelpacks = @user.unlocked_levelpacks    
+    @levelpack ||= Levelpack.find_by(id: cookies[:levelpack_id])
+    @levels = @levelpack.corresponding_levels
+    @level ||= Level.find_by(id: cookies[:level_id])
   end
   
   def create
@@ -50,6 +48,19 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "Gebruiker is verwijderd"
     redirect_to users_url
+  end
+  
+  
+  def toggle_current_levelpack_or_level
+    if params[:levelpack_id]
+      cookies[:levelpack_id] = params[:levelpack_id]
+      cookies[:level_id] = current_levelpack.corresponding_levels.first.id
+    end
+    
+    if params[:level_id]
+      cookies[:level_id] = params[:level_id]
+    end
+    redirect_to current_user
   end
   
   

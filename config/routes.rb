@@ -16,6 +16,7 @@ BinasQuest::Application.routes.draw do
   match '/signin',       to: 'sessions#new',         via: 'get'
   match '/signout',      to: 'sessions#destroy',     via: 'delete'
   match '/check_solution', to: 'levelpacks#check_solution', via: 'post'
+  match '/toggle_current_levelpack_or_level', to: 'users#toggle_current_levelpack_or_level', via: 'get'
  
   
 
