@@ -8,6 +8,7 @@ describe "AuthenticationPages" do
     
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      before { setup_start_for user }
       
       describe "when attempting to visit a protected page" do
         before do
