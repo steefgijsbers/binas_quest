@@ -107,7 +107,7 @@ describe "User Pages" do
     it { should have_link user.unlocked_levelpacks.first.title }
     it { should have_link user.unlocked_levelpacks.last.title }
     it { should have_selector 'h3', user.unlocked_levelpacks.first.title }
-    it { should have_selector 'section#levelpack_thumbs' }
+    it { should have_selector 'section.levelpack_thumbs' }
     it { should have_selector 'section#level_image' }
     it { should have_selector 'section#enter_solution_form' }
     
@@ -115,7 +115,13 @@ describe "User Pages" do
       before { click_link user.unlocked_levelpacks.last.title }      
       it { should have_selector 'h3', user.unlocked_levelpacks.last.title }
       it { should_not have_selector 'div.admin_sidebar' }
+      
+      describe "which leads to an already solved levelpack" do
+        before { click_link user.unlocked_levelpacks.first.title }
+        it { should have_content 'Deze puzzles heb je al opgelost' }
+      end
     end
+    
     
     describe "clicking on a level_thumb" do
       let(:level1) { Level.find_by_name "level1" }
@@ -127,16 +133,28 @@ describe "User Pages" do
     
     describe "submitting a solution" do
       let(:submit) { 'Check' }
+      before { click_link user.unlocked_levelpacks.last.title }
+      
+      it { should have_content "Test levelpack 3" }
+      it { should have_selector 'section#enter_solution_form' }
+      
       describe "which is incorrect" do
         it "should not unlock a new levelpack" do
           expect{ click_button submit }.not_to change(user.unlocked_levelpacks, :count)
         end
-        it "should not change the view" do
-          click_link user.unlocked_levelpacks.first.title
-          click_button submit
-          expect(page).to have_content user.unlocked_levelpacks.first.title
+        describe "should not change the view" do          
+          before { click_button submit }
+         
+          it { should have_content user.unlocked_levelpacks.last.title }
+          it { should have_selector 'div.alert.alert-error' }
         end
         
+      end
+      describe "which is correct" do
+        before { fill_in "Antwoord", with: "hehe" }
+        it "should unlock new levelpack" do
+          expect{ click_button submit }.to change(user.unlocked_levelpacks, :count).by(1)
+        end
       end
     end
   end

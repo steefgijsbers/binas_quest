@@ -1,8 +1,8 @@
 <% unless @level.nil? %>
-<%= form_tag(check_solution_path, method: 'post') do %>
-	<%= label_tag(:guess, "Antwoord: ") %>
-	<%= text_field_tag(:guess) %>
+	<%= form_tag(check_solution_path, method: 'post') do %>
+		<%= label_tag(:guess, "Antwoord: ") %>
+		<%= text_field_tag(:guess) %>
 
-	<%= submit_tag("Check") %>
-<% end %>
+		<%= submit_tag("Check") %>
+	<% end %>
 <% end %>
