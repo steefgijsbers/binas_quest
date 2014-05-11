@@ -7,9 +7,13 @@
 		<section id="level_image">
 			<%= image_tag(@level.img_src) unless @level.nil? %>
 		</section>
-		<section id="enter_solution_form">
-			<%= render 'levelpacks/enter_solution_form' %>
-		</section>		
+		<% if @levelpack == @unlocked_levelpacks.last %>
+			<section id="enter_solution_form">
+				<%= render 'levelpacks/enter_solution_form' %>
+			</section>
+		<% else %>
+			<h2>Deze puzzles heb je al opgelost</h2>
+		<% end %>		
 	<% else %>
 		<h2>Levelpack does not contain any levels</h2>
 	<% end %>

@@ -5,17 +5,18 @@ class LevelpacksController < ApplicationController
   before_action :find_levelpack, only: [:show, :destroy, :edit, :update]
 
   def check_solution
-    @levelpack = Levelpack.find_by(id: params[:levelpack_id])
+    @user = current_user
+    @levelpack = current_levelpack
     if params[:guess] == @levelpack.solution
       flash[:success] = "JUIST!"
-      @user = current_user
       @user.unlock_levelpack_following(@levelpack)
-      redirect_to @user
+      last_unlocked_levelpack = @user.unlocked_levelpacks.last
+      cookies[:levelpack_id] = last_unlocked_levelpack.id
+      cookies[:level_id] = last_unlocked_levelpack.corresponding_levels.first.id
     else
       flash[:error] = "Antwoord is niet correct."
-      @level = Level.find_by(id: params[:level_id])
-      redirect_to @levelpack
     end
+    redirect_to @user
   end
 
   def new
