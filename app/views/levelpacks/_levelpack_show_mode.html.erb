@@ -1,0 +1,12 @@
+<div class="span8">
+	<h3><%= @levelpack.title %></h3>
+	<% unless @levels.blank? %>
+		<section class="levelpack_thumbs">
+			<% @levels.each do |level| %>
+				<%= image_tag(level.thumb_src) %>
+			<% end %>
+		</section>
+	<% else %>
+		<h2>Levelpack does not contain any levels</h2>
+	<% end %>
+</div>		

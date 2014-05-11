@@ -173,37 +173,9 @@ describe "Levelpack Pages" do
       it { should have_link 'Delete', href: levelpack_path(@levelpack) }
       
       #puzzle_mode:
-      describe "and clicks the level_01 thumb" do
-        before { find(:xpath, "//a/img[contains(@src, #{level_01.thumb_src})]/..", match: :first).click }
-        it { should have_xpath("//img[contains(@src, #{level_01.img_src})]") }
-      end
-      
-      describe "and clicks the level_02 thumb" do
-        before { find(:xpath, "//a/img[contains(@src, #{level_02.thumb_src})]/..", match: :first).click }
-        it { should have_xpath("//img[contains(@src, #{level_02.img_src})]") }
-      end
-      
-      describe "and tries to enter solution" do
-        let(:correct_solution) { level_01.solution + level_02.solution }
-        let(:incorrect_solutions) { [level_01.solution, level_02.solution, " ", correct_solution + " ", " " + correct_solution] }
-        let(:submit) { 'Check' }
-        describe "which is incorrect" do
-          it "should be incorrect" do
-            incorrect_solutions.each do |incorrect_solution|
-              fill_in "Antwoord:", with: incorrect_solution
-              expect{ click_button submit }.not_to change(admin.unlocked_levelpacks, :count)
-            end
-            click_button submit
-            expect(page).to have_title full_title @levelpack.title
-          end          
-        end
-        
-        describe "which is correct" do
-          it "should be correct" do
-            fill_in "Antwoord:", with: correct_solution
-            expect{ click_button submit }.to change(admin.unlocked_levelpacks, :count).by(1)
-          end
-        end
+      describe "if levelpack contains levels" do
+        it { should have_xpath("//img[contains(@src, #{level_01.thumb_src})]") }
+        it { should have_xpath("//img[contains(@src, #{level_02.thumb_src})]") }
       end
       
       describe "if levelpack does not contain levels" do
