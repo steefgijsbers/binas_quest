@@ -13,10 +13,23 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @unlocked_levelpacks = @user.unlocked_levelpacks    
-    @levelpack ||= Levelpack.find_by(id: cookies[:levelpack_id])
+    @unlocked_levelpacks = @user.unlocked_levelpacks  
+    if cookies[:levelpack_id]  
+      @levelpack ||= Levelpack.find_by(id: cookies[:levelpack_id])
+    else
+      @levelpack = @unlocked_levelpacks.last
+      cookies.permanent[:levelpack_id] = @levelpack.id
+      @level = @levelpack.corresponding_levels.first
+      cookies.delete(:level_id)
+      cookies.permanent[:level_id] = @level.id
+    end
     @levels = @levelpack.corresponding_levels
-    @level ||= Level.find_by(id: cookies[:level_id])
+    if cookies[:level_id]
+      @level ||= Level.find_by(id: cookies[:level_id])
+    else
+      @level = @levels.first
+      cookies.permanent[:level_id] = @level.id
+    end
   end
   
   def create
