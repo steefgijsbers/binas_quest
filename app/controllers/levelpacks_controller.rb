@@ -26,11 +26,6 @@ class LevelpacksController < ApplicationController
   def show
     @levelpack ||= Levelpack.find_by(id: params[:levelpack_id])
     @levels = @levelpack.corresponding_levels
-    if params[:level_id]
-      @level = Level.find_by(id: params[:level_id])
-    else
-      @level = @levelpack.corresponding_levels.first
-    end        
   end
 
   def create
