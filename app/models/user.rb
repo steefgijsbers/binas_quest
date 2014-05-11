@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :u_lp_relationships, foreign_key: "user_id", dependent: :destroy
-  has_many :unlocked_levelpacks, through: :u_lp_relationships, source: :levelpack
+  has_many :levelpacks, through: :u_lp_relationships, source: :levelpack
   
   validates :naam,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   
   has_secure_password
+  
+  def unlocked_levelpacks
+    self.levelpacks(true)
+  end
   
   def unlock!(levelpack)
     self.u_lp_relationships.create!(levelpack_id: levelpack.id)

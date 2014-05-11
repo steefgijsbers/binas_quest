@@ -21,13 +21,24 @@ def sign_in(user, options={})
   end
 end
 
-def setup_start_for(user)
-  level_1 = Level.create(name: "level1", img_src: "level1.bmp", solution: "he")
-  level_1.generate_thumb_src
-  level_2 = Level.create(name: "level2", img_src: "level2.bmp", solution: "he")
-  level_2.generate_thumb_src
-  levelpack = Levelpack.create(name: "levelpack_81", title: "Test levelpack")
-  levelpack.add! level_1
-  levelpack.add! level_2
-  user.unlock! levelpack
+def setup_start_for(user)  
+  (1..3).each do |n|
+    levelpack = Levelpack.create(name: "levelpack_8#{n}", title: "Test levelpack #{n}")
+    
+    (1..2).each do |m|
+      x = 2*(n-1)+m
+      level = Level.create(name: "level#{x}", img_src: "level#{x}.bmp", solution: "he")
+      level.generate_thumb_src
+      levelpack.add! level
+    end
+    
+    levelpack.update_solution
+    user.unlock! levelpack
+  end 
+  levelpack = Levelpack.create(name: "levelpack_84", title: "Test levelpack 4")
+  level7 = Level.create(name: "level7", img_src: "level7.bmp", solution: "he")
+  level8 = Level.create(name: "level8", img_src: "level8.bmp", solution: "he")
+  levelpack.add! level7
+  levelpack.add! level8
+  levelpack.update_solution
 end

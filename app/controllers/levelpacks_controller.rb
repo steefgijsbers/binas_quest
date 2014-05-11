@@ -2,7 +2,7 @@ class LevelpacksController < ApplicationController
   before_action :signed_in_user
   before_action :admin_user
 
-  before_action :find_levelpack, only: [:show, :destroy, :edit, :update]
+  before_action :find_levelpack, only: [:destroy, :edit, :update]
 
   def check_solution
     @user = current_user
